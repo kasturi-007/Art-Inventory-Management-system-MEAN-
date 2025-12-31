@@ -1,0 +1,46 @@
+<div class="container">
+
+  <h1> Art & Stationery Inventory</h1>
+  <p class="subtitle">Manage brushes, colors, papers & creativity</p>
+
+  <!-- Product Form -->
+  <div class="form-card">
+    <h3>{{ editID ? 'Edit Product' : 'Add New Product' }}</h3>
+
+    <input [(ngModel)]="product.productCode" name="code" placeholder="Product Code" />
+    <input [(ngModel)]="product.productName" name="name" placeholder="Product Name" />
+    <input [(ngModel)]="product.category" name="category" placeholder="Category (Paints, Pens, Canvas)" />
+    <input [(ngModel)]="product.price" name="price" type="number" placeholder="Price (₹)" />
+
+    <button *ngIf="!editID" (click)="addProduct()">Add Product</button>
+    <button *ngIf="editID" (click)="updateProduct()">Update Product</button>
+  </div>
+
+  <!-- Product List -->
+  <div class="table-card">
+    <h3>Available Art Supplies</h3>
+
+    <table>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price (₹)</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let p of products">
+        <td>{{ p.productCode }}</td>
+        <td>{{ p.productName }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.price }}</td>
+        <td>
+          <button class="edit" (click)="editProduct(p)">Edit</button>
+          <button class="delete" (click)="deleteProduct(p._id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
